@@ -25,8 +25,10 @@ A simple browser tool that transforms the **StatsForSpotify** "Recent Tracks" pa
 
 2. Log in with your Spotify account.
 
-3. Press **F12** to open Developer Tools and go to the **Console** tab.
-
+3. **Open the Console** (one of these ways):  
+   - Press **F12** on your keyboard, then go to the **Console** tab.  
+   - Or right-click anywhere on the page → click **Inspect** → go to the **Console** tab.
+     
 4. **Allow pasting** (important):  
    When you try to paste the code, the browser may block it. Just type `allow pasting` in the console and press **Enter**.
 
