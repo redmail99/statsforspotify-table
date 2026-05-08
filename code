@@ -1,0 +1,97 @@
+// === Simple table ===
+(function() {
+
+    const items = document.querySelectorAll('div[class*="track-row"], div[class*="item"], div[class*="list-item"], li, tr');
+
+    let data = [];
+
+    items.forEach(item => {
+        const trackEl = item.querySelector('h3, h4, strong, .title, [class*="title"], [class*="name"]');
+        const artistEl = item.querySelector('p, span, .artist, [class*="artist"], small');
+        const timeEl = item.querySelector('time, .time, [class*="time"], [class*="played"], [class*="date"]');
+
+        const track = trackEl ? trackEl.textContent.trim() : '';
+        const artist = artistEl ? artistEl.textContent.trim() : '';
+        const playedAt = timeEl ? timeEl.textContent.trim() : '—';
+
+        if (track && artist) {
+            data.push({ Track: track, Artist: artist, 'Played At': playedAt });
+        }
+    });
+
+    if (data.length === 0) {
+        alert("No songs.");
+        return;
+    }
+
+    const table = document.createElement('table');
+    table.style = `
+        width: 80%; 
+        border-collapse: collapse; 
+        margin: 20px 0; 
+        font-family: Arial, sans-serif;
+        background: #ffffff;
+        color: #000000;
+    `;
+
+    let html = `
+        <thead>
+            <tr style="background:#ffffff;">
+                <th style="padding:12px; text-align:left;">Track</th>
+                <th style="padding:12px; text-align:left;">Artist(s)</th>
+                <th style="padding:12px; text-align:left;">Played at</th>
+            </tr>
+        </thead>
+        <tbody>
+    `;
+
+    data.forEach(row => {
+        html += `
+            <tr">
+                <td style="padding:10px 12px;">${row.Track}</td>
+                <td style="padding:10px 12px;">${row.Artist}</td>
+                <td style="padding:10px 12px;">${row['Played At']}</td>
+            </tr>
+        `;
+    });
+
+    html += '</tbody></table>';
+
+    table.innerHTML = html;
+
+    const container = document.createElement('div');
+    container.style = `
+        position: fixed; 
+        width: 100%; 
+        top: 20px; 
+        left: 20px; 
+        right: 20px; 
+        max-height: 100%; 
+        overflow: auto; 
+        z-index: 99999; 
+        background: #ffffff; 
+        padding: 15px; 
+        border-radius: 12px;
+        border: 2px solid;
+    `;
+
+    const title = document.createElement('h2');
+    title.textContent = '📋 Song list';
+    title.style = 'margin: 0 0 15px 0; color: #000000;';
+    container.appendChild(title);
+    container.appendChild(table);
+
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = '✕ Close';
+    closeBtn.style = `
+        position: absolute; top: 10px; right: 15px; 
+        padding: 8px 14px; background: #f00; color: white; 
+        border: none; border-radius: 6px; cursor: pointer;
+    `;
+    closeBtn.onclick = () => container.remove();
+    container.appendChild(closeBtn);
+
+    document.body.appendChild(container);
+
+    console.log(`✅ Table data: ${data.length} songs`);
+})();
