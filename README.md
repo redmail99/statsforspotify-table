@@ -35,8 +35,9 @@ A simple browser tool that transforms the **StatsForSpotify** "Recent Tracks" pa
 5. Copy and paste the entire script below, then press **Enter**:
 
 ```javascript
-// === CLEAN RECENT TRACKS TABLE ===
+// === Simple table ===
 (function() {
+
     const items = document.querySelectorAll('div[class*="track-row"], div[class*="item"], div[class*="list-item"], li, tr');
 
     let data = [];
@@ -56,26 +57,26 @@ A simple browser tool that transforms the **StatsForSpotify** "Recent Tracks" pa
     });
 
     if (data.length === 0) {
-        alert("No tracks found. Try inspecting a row and let me know if selectors need updating.");
+        alert("No songs.");
         return;
     }
 
     const table = document.createElement('table');
     table.style = `
-        width: 90%; 
+        width: 80%; 
         border-collapse: collapse; 
         margin: 20px 0; 
         font-family: Arial, sans-serif;
-        background: white;
-        color: #111;
+        background: #ffffff;
+        color: #000000;
     `;
 
     let html = `
         <thead>
-            <tr style="background:#f8f8f8; border-bottom: 2px solid #ddd;">
-                <th style="padding:14px 12px; text-align:left; font-weight:600;">Track</th>
-                <th style="padding:14px 12px; text-align:left; font-weight:600;">Artist(s)</th>
-                <th style="padding:14px 12px; text-align:left; font-weight:600;">Played at</th>
+            <tr style="background:#ffffff;">
+                <th style="padding:12px; text-align:left;">Track</th>
+                <th style="padding:12px; text-align:left;">Artist(s)</th>
+                <th style="padding:12px; text-align:left;">Played at</th>
             </tr>
         </thead>
         <tbody>
@@ -83,51 +84,53 @@ A simple browser tool that transforms the **StatsForSpotify** "Recent Tracks" pa
 
     data.forEach(row => {
         html += `
-            <tr>
-                <td style="padding:14px 12px; border-bottom: 1px solid #eee;">${row.Track}</td>
-                <td style="padding:14px 12px; border-bottom: 1px solid #eee;">${row.Artist}</td>
-                <td style="padding:14px 12px; border-bottom: 1px solid #eee;">${row['Played At']}</td>
+            <tr">
+                <td style="padding:10px 12px;">${row.Track}</td>
+                <td style="padding:10px 12px;">${row.Artist}</td>
+                <td style="padding:10px 12px;">${row['Played At']}</td>
             </tr>
         `;
     });
 
     html += '</tbody></table>';
 
+    table.innerHTML = html;
+
     const container = document.createElement('div');
     container.style = `
         position: fixed; 
+        width: 90%; 
         top: 20px; 
         left: 20px; 
         right: 20px; 
-        max-height: 85vh; 
+        max-height: 100%; 
         overflow: auto; 
         z-index: 99999; 
         background: #ffffff; 
-        padding: 20px; 
-        border-radius: 8px;
-        border: 1px solid #ddd;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        padding: 15px; 
+        border-radius: 12px;
+        border: 2px solid;
     `;
 
     const title = document.createElement('h2');
-    title.textContent = '📋 Recent Tracks - Clean Table';
-    title.style = 'margin: 0 0 15px 0; color: #1a1a1a; font-size: 22px;';
+    title.textContent = '📋 Song list';
+    title.style = 'margin: 0 0 15px 0; color: #000000;';
     container.appendChild(title);
     container.appendChild(table);
 
     const closeBtn = document.createElement('button');
-    closeBtn.textContent = '✕';
+    closeBtn.textContent = '✕ Close';
     closeBtn.style = `
-        position: absolute; top: 15px; right: 15px; 
-        padding: 6px 12px; background: #e74c3c; color: white; 
-        border: none; border-radius: 4px; cursor: pointer; font-size: 16px;
+        position: absolute; top: 10px; right: 15px; 
+        padding: 8px 14px; background: #f00; color: white; 
+        border: none; border-radius: 6px; cursor: pointer;
     `;
     closeBtn.onclick = () => container.remove();
     container.appendChild(closeBtn);
 
     document.body.appendChild(container);
 
-    console.log(`✅ Clean table created with ${data.length} tracks`);
+    console.log(`✅ Table data: ${data.length} songs`);
 })();
 
 ```
