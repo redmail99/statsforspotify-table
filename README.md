@@ -62,7 +62,7 @@ A simple browser tool that transforms the **StatsForSpotify** "Recent Tracks" pa
 
     const table = document.createElement('table');
     table.style = `
-        width: 100%; 
+        width: 90%; 
         border-collapse: collapse; 
         margin: 20px 0; 
         font-family: Arial, sans-serif;
