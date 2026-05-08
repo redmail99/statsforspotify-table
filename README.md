@@ -1,3 +1,8 @@
+## ☕ Support
+
+* If this tool was useful to you, you can support me here:
+   [☕ Buy me a coffee on Ko-fi](https://ko-fi.com/redsj)
+
 # Spotify Recent Tracks - Clean Table
 
 A simple browser tool that transforms the **StatsForSpotify** "Recent Tracks" page into a clean, minimal table without album covers.
@@ -135,7 +140,4 @@ A simple browser tool that transforms the **StatsForSpotify** "Recent Tracks" pa
 
 ```
 
-## ☕ Support
 
-* If this tool was useful to you, you can support me here:
-   [☕ Buy me a coffee on Ko-fi](https://ko-fi.com/redsj)
