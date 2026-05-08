@@ -79,9 +79,9 @@ A simple browser tool that transforms the **StatsForSpotify** "Recent Tracks" pa
     let html = `
         <thead>
             <tr style="background:#ffffff;">
-                <th style="padding:12px; text-align:left;">Track</th>
-                <th style="padding:12px; text-align:left;">Artist(s)</th>
-                <th style="padding:12px; text-align:left;">Played at</th>
+                <th style="text-align:left;">Track</th>
+                <th style="text-align:left;">Artist(s)</th>
+                <th style="text-align:left;">Played at</th>
             </tr>
         </thead>
         <tbody>
@@ -90,9 +90,9 @@ A simple browser tool that transforms the **StatsForSpotify** "Recent Tracks" pa
     data.forEach(row => {
         html += `
             <tr">
-                <td style="padding:10px 12px;">${row.Track}</td>
-                <td style="padding:10px 12px;">${row.Artist}</td>
-                <td style="padding:10px 12px;">${row['Played At']}</td>
+                <td>${row.Track}</td>
+                <td>${row.Artist}</td>
+                <td>${row['Played At']}</td>
             </tr>
         `;
     });
